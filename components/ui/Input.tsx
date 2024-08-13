@@ -4,7 +4,6 @@ interface inputProps {
     placeholder?: string;
     value?: string;
 }
-
 const Input = ({ name, type, placeholder, value }: inputProps) => {
     return (
         <>

@@ -1,7 +1,6 @@
 // test-connection.js
 const { MongoClient } = require("mongodb");
 require("dotenv").config();
-
 const uri = process.env.DATABASE_URL;
 
 const client = new MongoClient(uri);

@@ -6,7 +6,6 @@ import { create } from "@/app/actions/todoActions";
 import Form from "../ui/Form";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
-
 // Define the Zod schema for validation
 const addTodoSchema = z.object({
     input: z

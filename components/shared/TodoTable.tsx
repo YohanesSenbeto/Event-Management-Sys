@@ -1,12 +1,10 @@
 import React from "react";
 import { useTable } from "@tanstack/react-table";
-
 interface Event {
     id: string;
     title: string;
     date: string;
 }
-
 interface TodoTableProps {
     events: Event[];
 }

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z, ZodError } from "zod";
 import { createUser } from "@/app/actions/todoActions";
-
 const schema = z.object({
     email: z.string().email("Invalid email format").min(1),
     password: z.string().min(8, "Password must be at least 8 characters long"),

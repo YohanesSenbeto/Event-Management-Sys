@@ -3,7 +3,6 @@ import TodoTable from "./TodoTable";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
-
 const HomePage: React.FC = async () => {
     const todos = await prisma.todo.findMany();
 

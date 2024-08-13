@@ -3,7 +3,6 @@ import Form from "../ui/Form";
 import Button from "../ui/Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { todoType } from "@/types/todoType";
-
 const ChangeTodo = ({ todo }: { todo: todoType }) => {
     return (
         <Form action={todoStatus}>

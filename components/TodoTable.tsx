@@ -1,9 +1,7 @@
 //todo table
 "use client";
-
 import React from "react";
 import { useTable, useSortBy, useFilters } from "react-table";
-
 interface TodoTableProps {
     data: {
         _id: string;
