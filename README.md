@@ -102,28 +102,6 @@ Before running the project, ensure you have the following installed:
 
 -   TypeScript & Zod: Strongly typed codebase with robust validation.
 
-# Usage Guidelines:
-
--   Register or log in to your account.
-
--   Browse the list of Gebeya-Tech-products.
-
--   Add a new New products and sale.
-
-# Development Process:
-
--   Initial planning and wireframing
-
--   Setting up the project repository
-
--   Developing the back-end API
-
--   Creating the front-end components and integrating with the API
-
--   Conducting user testing and feedback sessions
-
--   Finalizing and styling the application
-
 # Project Structure
 
 -   Here’s a quick overview of the project structure:

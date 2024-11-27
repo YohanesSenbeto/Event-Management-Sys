@@ -6,12 +6,13 @@ import { create } from "@/app/actions/todoActions";
 import Form from "../ui/Form";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
+
 // Define the Zod schema for validation
 const addTodoSchema = z.object({
     input: z
         .string()
         .min(1, "Todo cannot be empty.")
-        .max(100, "Todo cannot be more than 100 characters.")
+        .max(50, "Todo cannot be more than 50 characters.")
         .regex(/^[A-Za-z ]+$/, "Todo must contain only letters and spaces.")
         .refine(
             (value) => value.split(" ").length > 1,
@@ -25,6 +26,7 @@ const addTodoSchema = z.object({
 
 const AddTodo = () => {
     const [error, setError] = useState<string | null>(null);
+    const [success, setSuccess] = useState<string | null>(null);
 
     const handleSubmit = async (formData: FormData) => {
         const input = formData.get("input") as string;
@@ -35,7 +37,13 @@ const AddTodo = () => {
 
             // Call the action to create a new todo
             await create(formData);
-            setError(null); // Clear error if submission is successful
+
+            // Clear errors and set success message
+            setError(null);
+            setSuccess("Your Event  has been created successfully!");
+
+            // Clear the success message after a few seconds
+            setTimeout(() => setSuccess(null), 3000);
         } catch (e) {
             if (e instanceof z.ZodError) {
                 setError(e.errors.map((err) => err.message).join(", "));
@@ -47,12 +55,26 @@ const AddTodo = () => {
     };
 
     return (
-        <Form action={handleSubmit} className="w-1/2 m-auto">
-            <div className="flex">
-                <Input name="input" type="text" placeholder="Add Todo..." />
-                <Button type="submit" text="Add" />
+        <Form action={handleSubmit} className="w-full max-w-lg mx-auto mt-8">
+            <div className="flex items-center gap-2">
+                <Input
+                    name="input"
+                    type="text"
+                    placeholder="Add Event..."
+                    className="flex-grow p-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <Button
+                    type="submit"
+                    text="Add"
+                    className="ml-5 bg-gradient-to-r from-blue-400 to-blue-600 text-white text-lg font-bold py-3 px-6 rounded-md shadow-lg hover:from-blue-500 hover:to-blue-700 transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
             </div>
-            {error && <p className="text-red-500 mt-2">{error}</p>}
+            {error && <p className="text-red-500 mt-2 text-center">{error}</p>}
+            {success && (
+                <div className="mt-4 p-3 text-green-700 bg-green-100 border border-green-300 rounded-md text-center">
+                    {success}
+                </div>
+            )}
         </Form>
     );
 };

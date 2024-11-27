@@ -9,7 +9,7 @@ const ChangeTodo = ({ todo }: { todo: todoType }) => {
             <input
                 name="inputId"
                 value={todo.id}
-                className="border-gray-700 border"
+                className="border-gray-600 border"
                 type="hidden"
             />
 
