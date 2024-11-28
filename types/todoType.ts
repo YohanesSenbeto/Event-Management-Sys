@@ -1,3 +1,4 @@
+// Definition of the todoType type.
 export type todoType = {
   id: string;
   title?: string | null;
