@@ -4,7 +4,6 @@
 
 ## Features
 
--   **User Authentication**: Secure user registration and login.
 -   **Event Management**: Create, edit, delete, and view events.
 -   **Responsive Design**: Fully responsive and user-friendly interface.
 -   **Data Management**: Efficient handling of event data using React Query.
