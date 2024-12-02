@@ -1,4 +1,4 @@
-// pages/api/todos.ts
+//app/api/todos.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
 

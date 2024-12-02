@@ -1,8 +1,7 @@
 import EditTodo from "./EditTodo";
 import DeleteTodo from "./DeleteTodo";
 import ChangeTodo from "./ChangeTodo";
-import { todoType } from "@/types/todoType";
-const Todo = ({ todo }: { todo: todoType }) => {
+const Todo = ({ todo }) => {
     const todoStyle = {
         textDecoration: todo.isCompleted === true ? "line-through" : "none",
         opacity: todo.isCompleted === true ? 0.5 : 1,
