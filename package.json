@@ -6,6 +6,7 @@
       "dev": "next dev",
       "build": "prisma generate && next build",
       "start": "next start",
+      "prisma:generate": "prisma generate",
       "generate": "NODE_TLS_REJECT_UNAUTHORIZED=0 prisma generate",
       "postinstall": "prisma generate",
       "lint": "next lint"
