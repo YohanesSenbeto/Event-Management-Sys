@@ -1,4 +1,4 @@
-import { todoStatus } from "../../app/actions/todoActions";
+import { todoStatus } from "@/app/actions/todoActions";
 import Button from "../ui/Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { todoType } from "../../types/todoType";

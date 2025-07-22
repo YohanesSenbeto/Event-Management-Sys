@@ -3,7 +3,7 @@
 
 import { useState } from "react";
 import { z } from "zod";
-import { create } from "../../app/actions/todoActions";
+import { create } from "@/app/actions/todoActions";
 import Form from "../ui/Form";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
