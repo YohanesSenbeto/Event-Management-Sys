@@ -5,7 +5,8 @@ import { deleteTodo } from "@/app/actions/todoActions";
 import Button from "../ui/Button";
 import { BsFillTrashFill } from "react-icons/bs";
 import Form from "../ui/Form";
-import { todoType } from "@/types/todoTypes";
+// Update the import path to the correct location of your todoTypes file
+import { todoType } from "../../types/todoType";
 
 const DeleteTodo = ({ todo }: { todo: todoType }) => {
     const [success, setSuccess] = useState<string | null>(null);

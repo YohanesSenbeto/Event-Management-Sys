@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+export const dynamic = "force-dynamic";
 import Provider from "@/utils/Provider";
 import { FaFacebook, FaTwitter, FaLinkedin } from "react-icons/fa";
 import "./globals.css";

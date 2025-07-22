@@ -6,7 +6,7 @@ import Input from "../ui/Input";
 import { BiEdit } from "react-icons/bi";
 import { useState } from "react";
 import Button from "../ui/Button";
-import { todoType } from "@/types/todoTypes";
+import { todoType } from "../../types/todoType";
 
 const EditTodo = ({ todo }: { todo: todoType }) => {
     const [editTodo, setEditTodo] = useState(false);

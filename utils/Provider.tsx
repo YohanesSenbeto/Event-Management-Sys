@@ -3,7 +3,7 @@
 /*
   React Query Provider Component
   -------------------------------
-  This component wraps its children with the QueryClientProvider, 
+  This component wraps its children with the QueryClientProvider,
   which provides a React Query client instance to manage server-state efficiently.
 
   Features:

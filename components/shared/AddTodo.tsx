@@ -1,8 +1,9 @@
+// components/shared/AddTodo.tsx
 "use client";
 
 import { useState } from "react";
 import { z } from "zod";
-import { create } from "@/app/Actions/todoActions";
+import { create } from "@/app/actions/todoActions";
 import Form from "../ui/Form";
 import Input from "../ui/Input";
 import Button from "../ui/Button";
@@ -40,13 +41,13 @@ const AddTodo = () => {
 
             // Clear errors and set success message
             setError(null);
-            setSuccess("Your Event  has been created successfully!");
+            setSuccess("Your Event has been created successfully!");
 
             // Clear the success message after a few seconds
             setTimeout(() => setSuccess(null), 3000);
         } catch (e) {
             if (e instanceof z.ZodError) {
-                setError(e.errors.map((err) => err.message).join(", "));
+                setError(e.issues.map((err) => err.message).join(", "));
             } else {
                 console.error("Form submission error:", e);
                 setError("An error occurred while adding the todo.");

@@ -76,7 +76,7 @@ Before running the project, ensure you have the following installed:
 - Create a .env file in the root directory and add your MongoDB Atlas connection string:
 
 - DATABASE_URL="your-mongodb-atlas-connection-string"
-- NEXT_PUBLIC_API_URL="http://localhost:3000/api"
+- NEXT_PUBLIC_API_URL="process.env.NEXT_PUBLIC_SITE_URL + '/api"
 
 # Prisma Setup
 - Initialize Prisma and generate the client:

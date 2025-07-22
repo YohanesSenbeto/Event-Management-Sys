@@ -1,80 +1,116 @@
-// src/app/actions/todoActions.ts
-
 "use server";
+
 import { revalidatePath } from "next/cache";
-import { prisma } from "@/utils/prisma";
+import { prisma } from "@/lib/prisma";
 
 export async function create(formData: FormData) {
     const input = formData.get("input") as string;
 
-    // No need for validation here as it's handled in the component
-
-    if (!input.trim()) {
+    if (!input?.trim()) {
+        // No input or empty string, just return
         return;
     }
 
-    await prisma.todo.create({
-        data: {
-            title: input,
-        },
-    });
+    try {
+        await prisma.todo.create({
+            data: {
+                title: input,
+            },
+        });
 
-    revalidatePath("/");
+        // Revalidate the homepage path to update UI
+        revalidatePath("/");
+    } catch (error) {
+        console.error("Error creating todo:", error);
+        throw error;
+    }
 }
 
-// Keep the other functions unchanged
 export async function edit(formData: FormData) {
     const input = formData.get("newTitle") as string;
     const inputId = formData.get("inputId") as string;
 
-    await prisma.todo.update({
-        where: {
-            id: inputId,
-        },
-        data: {
-            title: input,
-        },
-    });
+    if (!inputId || !input?.trim()) {
+        // Missing ID or empty title
+        return;
+    }
 
-    revalidatePath("/");
+    try {
+        await prisma.todo.update({
+            where: {
+                id: inputId,
+            },
+            data: {
+                title: input,
+            },
+        });
+
+        revalidatePath("/");
+    } catch (error) {
+        console.error("Error editing todo:", error);
+        throw error;
+    }
 }
 
 export async function deleteTodo(formData: FormData) {
     const inputId = formData.get("inputId") as string;
 
-    await prisma.todo.delete({
-        where: {
-            id: inputId,
-        },
-    });
+    if (!inputId) {
+        return;
+    }
 
-    revalidatePath("/");
+    try {
+        await prisma.todo.delete({
+            where: {
+                id: inputId,
+            },
+        });
+
+        revalidatePath("/");
+    } catch (error) {
+        console.error("Error deleting todo:", error);
+        throw error;
+    }
 }
 
 export async function todoStatus(formData: FormData) {
     const inputId = formData.get("inputId") as string;
-    const todo = await prisma.todo.findUnique({
-        where: {
-            id: inputId,
-        },
-    });
 
-    if (!todo) {
+    if (!inputId) {
         return;
     }
 
-    const updatedStatus = !todo.isCompleted;
+    try {
+        // Find the todo by ID
+        const todo = await prisma.todo.findUnique({
+            where: {
+                id: inputId,
+            },
+        });
 
-    await prisma.todo.update({
-        where: {
-            id: inputId,
-        },
-        data: {
-            isCompleted: updatedStatus,
-        },
-    });
+        if (!todo) {
+            return;
+        }
 
-    revalidatePath("/");
+        // Toggle the `isCompleted` status (correct field name)
+        const updatedStatus = !todo.isCompleted;
 
-    return updatedStatus;
+        // Update the todo with the new isCompleted status
+        await prisma.todo.update({
+            where: {
+                id: inputId,
+            },
+            data: {
+                isCompleted: updatedStatus,
+            },
+        });
+
+        // Revalidate the path so UI updates
+        revalidatePath("/");
+
+        return updatedStatus;
+    } catch (error) {
+        console.error("Error updating todo status:", error);
+        throw error;
+    }
 }

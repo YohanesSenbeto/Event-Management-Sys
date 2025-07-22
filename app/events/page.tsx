@@ -1,10 +1,13 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
 import EventTable from "@/components/shared/EventTable";
+export const dynamic = "force-dynamic";
 
 // Fetch function
 const fetchEvents = async () => {
-    const response = await fetch("http://localhost:3000/api/todos");
+    const response = await fetch(
+        "process.env.NEXT_PUBLIC_SITE_URL + '/api/todos"
+    );
     console.log(response);
     if (!response.ok) {
         throw new Error("Network response was not ok");

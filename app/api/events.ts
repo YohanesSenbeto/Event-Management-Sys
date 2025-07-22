@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from '@/utils/prisma';
+import { prisma } from '@/lib/prisma';
+export const dynamic = "force-dynamic";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {

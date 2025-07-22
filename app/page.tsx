@@ -1,12 +1,24 @@
-import { PrismaClient } from "@prisma/client";
+// app/page.tsx
+export const dynamic = "force-dynamic";
+import React from "react";
+import { prisma } from "@/lib/prisma"; // import Prisma client from lib/prisma.ts
 import AddTodo from "@/components/shared/AddTodo";
 import Todo from "@/components/shared/Todo";
-import React from "react";
 import HomePage from "@/components/HomePage";
-const prisma = new PrismaClient();
+
+// Async function to fetch todos from the database
 const fetchTodos = async () => {
-    const todos = await prisma.todo.findMany();
-    return todos;
+    try {
+        const todos = await prisma.todo.findMany();
+        // Optional: remove any todos missing updatedAt if needed
+        return todos.map((todo) => ({
+            ...todo,
+            updatedAt: todo.updatedAt ?? new Date(), // fallback if null
+        }));
+    } catch (error) {
+        console.error("Failed to fetch todos:", error);
+        return [];
+    }
 };
 
 const Todos = async () => {

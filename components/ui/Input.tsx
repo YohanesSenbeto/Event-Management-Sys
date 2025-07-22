@@ -1,20 +1,28 @@
-interface inputProps {
+// components/ui/Input.tsx
+import React from "react";
+
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     name: string;
     type: string;
-    placeholder?: string;
-    value?: string;
 }
-const Input = ({ name, type, placeholder, value }: inputProps) => {
+
+const Input: React.FC<InputProps> = ({
+    name,
+    type,
+    placeholder,
+    value,
+    className,
+    ...rest
+}) => {
     return (
-        <>
-            <input
-                className="w-full p-2 border-gray-200 border"
-                name={name}
-                type={type}
-                value={value}
-                placeholder={placeholder}
-            />
-        </>
+        <input
+            name={name}
+            type={type}
+            placeholder={placeholder}
+            value={value}
+            className={className ?? "w-full p-2 border border-gray-200"}
+            {...rest}
+        />
     );
 };
 

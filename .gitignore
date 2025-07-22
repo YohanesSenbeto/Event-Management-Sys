@@ -1,66 +1,42 @@
-# Official guide: https://help.github.com/articles/ignoring-files/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Dependencies
-node_modules/
-.pnp/
-.pnp.js
-.yarn/
-*.lock # Ignore all lock files (optional, if not required in your workflow)
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# Build outputs
-.next/
-out/
-build/
-dist/
+# testing
+/coverage
 
-# Testing
-coverage/
+# next.js
+/.next/
+/out/
 
-# Local environment files
-.env
-.env.* # Include .env.production, .env.local, etc.
-*.local # Catch other local files like `settings.local`
+# production
+/build
 
-# Debug logs
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.vscode/ # Exclude VSCode workspace settings
+.pnpm-debug.log*
 
-# Miscellaneous
-.DS_Store # macOS system file
-Thumbs.db # Windows system file
-*.pem # Keys and certificates
-*.key
-*.crt
+# env files (can opt-in for committing if needed)
+.env*
+.env
 
-# Vercel and deployment
-.vercel/
-.vercel_cache/
+# vercel
+.vercel
 
-# TypeScript
+# typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# IDE files
-.idea/ # JetBrains IDEs
-*.sublime-workspace
-*.sublime-project
-
-# Temporary files
-*.swp # vi/vim swap files
-*.tmp
-*.bak
-*.backup
-*.orig
-
-# Logs and reports
-logs/
-*.log
-*.pid
-*.seed
-*.pid.lock
-
-# Git specific
-*.rej # Patch conflicts
-*.orig # Merge conflict backup files

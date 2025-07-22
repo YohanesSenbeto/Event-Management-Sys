@@ -1,24 +1,26 @@
-import { todoStatus } from "@/app/Actions/todoActions";
-import Form from "../ui/Form";
+import { todoStatus } from "@/app/actions/todoActions";
 import Button from "../ui/Button";
 import { AiOutlineCheckCircle } from "react-icons/ai";
-import { todoType } from "@/types/todoType";
+import { todoType } from "../../types/todoType";
+import clsx from "clsx";
+
 const ChangeTodo = ({ todo }: { todo: todoType }) => {
     return (
-        <Form action={todoStatus}>
-            <input
-                name="inputId"
-                value={todo.id}
-                className="border-gray-600 border"
-                type="hidden"
-            />
-
+        <form action={todoStatus} className="inline-block">
+            <input name="inputId" value={todo.id} type="hidden" />
             <Button
                 actionButton
                 type="submit"
-                text={<AiOutlineCheckCircle />}
+                text={
+                    <AiOutlineCheckCircle
+                        className={clsx(
+                            "text-xl",
+                            todo.isCompleted ? "text-green-600" : "text-white"
+                        )}
+                    />
+                }
             />
-        </Form>
+        </form>
     );
 };
 

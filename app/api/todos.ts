@@ -1,6 +1,7 @@
 //app/api/todos.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
+export const dynamic = "force-dynamic";
 
 const prisma = new PrismaClient();
 
