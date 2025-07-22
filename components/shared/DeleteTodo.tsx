@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { deleteTodo } from "../../app/actions/todoActions";
+import { deleteTodo } from "@/app/actions/todoActions";
 import Button from "../ui/Button";
 import { BsFillTrashFill } from "react-icons/bs";
 import Form from "../ui/Form";
