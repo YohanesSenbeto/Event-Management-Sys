@@ -7,8 +7,8 @@ import {
     useFilters,
     Column,
     CellProps,
-    HeaderGroup,
     Row,
+    UseSortByColumnProps,
 } from "react-table";
 
 interface Todo {
@@ -89,29 +89,34 @@ const TodoTable: React.FC<TodoTableProps> = ({ data }) => {
                 className="min-w-full border-collapse border border-gray-300 shadow-sm"
             >
                 <thead className="bg-gray-100">
-                    {headerGroups.map((headerGroup: HeaderGroup<Todo>) => (
+                    {headerGroups.map((headerGroup) => (
                         <tr
                             {...headerGroup.getHeaderGroupProps()}
                             key={headerGroup.id}
                         >
-                            {headerGroup.headers.map((column) => (
-                                <th
-                                    {...column.getHeaderProps(
-                                        (column as any).getSortByToggleProps()
-                                    )}
-                                    key={column.id}
-                                    className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer select-none"
-                                >
-                                    {column.render("Header")}
-                                    <span>
-                                        {(column as any).isSorted
-                                            ? (column as any).isSortedDesc
-                                                ? " 🔽"
-                                                : " 🔼"
-                                            : ""}
-                                    </span>
-                                </th>
-                            ))}
+                            {headerGroup.headers.map(
+                                (
+                                    column: Column<Todo> &
+                                        UseSortByColumnProps<Todo>
+                                ) => (
+                                    <th
+                                        {...column.getHeaderProps(
+                                            column.getSortByToggleProps()
+                                        )}
+                                        key={column.id}
+                                        className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase tracking-wider cursor-pointer select-none"
+                                    >
+                                        {column.render("Header")}
+                                        <span>
+                                            {column.isSorted
+                                                ? column.isSortedDesc
+                                                    ? " 🔽"
+                                                    : " 🔼"
+                                                : ""}
+                                        </span>
+                                    </th>
+                                )
+                            )}
                         </tr>
                     ))}
                 </thead>
