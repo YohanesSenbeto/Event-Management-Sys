@@ -3,15 +3,22 @@ import { useQuery } from "@tanstack/react-query";
 import EventTable from "@/components/shared/EventTable";
 export const dynamic = "force-dynamic";
 
-// Fetch function
+// ✅ Fixed Fetch Function
 const fetchEvents = async () => {
-    const response = await fetch(
-        "process.env.NEXT_PUBLIC_SITE_URL + '/api/todos"
-    );
-    console.log(response);
+    const baseUrl =
+        typeof window !== "undefined"
+            ? "" // Use relative path in browser (client-side)
+            : process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+
+    const response = await fetch(`${baseUrl}/api/todos`);
+
+    console.log("Fetching:", `${baseUrl}/api/todos`);
     if (!response.ok) {
+        const errorBody = await response.text();
+        console.error("Error fetching events:", errorBody);
         throw new Error("Network response was not ok");
     }
+
     return response.json();
 };
 
